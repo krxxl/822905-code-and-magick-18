@@ -30,6 +30,17 @@ var getMaxTime = function (times) {
   return maxTime;
 };
 
+var getSchedule = function (ctx, xColumn, heigthColumn, time, name) {
+  ctx.fillRect(xColumn, Y_COLUMN, WIDTH_COLUMN, -heigthColumn);
+  ctx.fillStyle = TEXT_COLOR;
+  ctx.fillText(name, xColumn, HEIGTH_WINDOW);
+  ctx.fillText(Math.round(time), xColumn, Y_COLUMN - heigthColumn - 10);
+};
+
+var getColor = function (min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+};
+
 window.renderStatistics = function (ctx, names, times) {
 
   renderCloud(ctx, X_WINDOW + 10, Y_WINDOW + 10, WIDTH_WINDOW, HEIGTH_WINDOW, 'rgba(0, 0, 0, 0.7)');
@@ -58,18 +69,16 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = USERCOLUMN_COLOR;
 
     if (names[i] !== 'Вы') {
-      var color = 50 + (Math.round(Math.random() * 100));
+      var color = getColor(0, 100);
       ctx.fillStyle = 'hsl(240, ' + color + '%, 50%)';
     }
 
+    // получаем высоту граика
     var heigthColumn = Math.round(MAX_HEIGTH * times[i] / maxTime);
-    ctx.fillRect(xColumn, Y_COLUMN, WIDTH_COLUMN, -heigthColumn);
-    ctx.fillStyle = TEXT_COLOR;
-    ctx.fillText(names[i], xColumn, HEIGTH_WINDOW);
-    ctx.fillText(Math.round(times[i]), xColumn, Y_COLUMN - heigthColumn - 10);
-
+    // отрисовывам график
+    getSchedule(ctx, xColumn, heigthColumn, times[i], names[i]);
+    // получаем координату X следующего графика
     xColumn += WIDTH_COLUMN + MARGIN_COLUMN;
-
   }
 
 };
