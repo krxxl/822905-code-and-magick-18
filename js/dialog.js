@@ -81,10 +81,6 @@
 
   upload.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
-    // var defaultCoords = {
-    //   x: evt.clientX,
-    //   y: evt.clientY
-    // };
 
     var startCoords = {
       x: evt.clientX,
