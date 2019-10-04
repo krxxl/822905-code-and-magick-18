@@ -27,6 +27,7 @@
 
   var closePopup = function () {
     setup.classList.add('hidden');
+    window.list.innerHTML = '';
     document.removeEventListener('keydown', onPopupEscPress);
     wizardCoat.removeEventListener('click', onCoatChangeColor);
     wizardEyes.removeEventListener('click', onEyesChangeColor);
@@ -35,6 +36,7 @@
 
   setupOpen.addEventListener('click', function () {
     openPopup();
+    window.backend.load('https://js.dump.academy/code-and-magick/data', window.successHandler, window.errorHandler);
   });
 
   setupOpen.addEventListener('keydown', function (evt) {
@@ -127,4 +129,13 @@
     document.addEventListener('mouseup', onMouseUp);
 
   });
+
+  // отправка формы
+  var form = document.querySelector('.setup-wizard-form');
+
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save('https://js.dump.academy/code-and-magick', new FormData(form), closePopup, window.errorHandler);
+  });
+
 })();
