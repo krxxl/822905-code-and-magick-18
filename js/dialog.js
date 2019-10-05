@@ -36,7 +36,7 @@
 
   setupOpen.addEventListener('click', function () {
     openPopup();
-    window.backend.load('https://js.dump.academy/code-and-magick/data', window.successHandler, window.errorHandler);
+    window.backend.load(window.successHandler, window.errorHandler);
   });
 
   setupOpen.addEventListener('keydown', function (evt) {
@@ -83,10 +83,7 @@
 
   upload.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
-    // var defaultCoords = {
-    //   x: evt.clientX,
-    //   y: evt.clientY
-    // };
+
 
     var startCoords = {
       x: evt.clientX,
@@ -135,7 +132,7 @@
 
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    window.backend.save('https://js.dump.academy/code-and-magick', new FormData(form), closePopup, window.errorHandler);
+    window.backend.save(new FormData(form), closePopup, window.errorHandler);
   });
 
 })();

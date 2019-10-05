@@ -2,7 +2,8 @@
 
 (function () {
   window.backend = {
-    load: function (url, onLoad, onError) {
+    load: function (onLoad, onError) {
+      var url = 'https://js.dump.academy/code-and-magick/data';
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 
@@ -20,7 +21,8 @@
       xhr.open('GET', url);
       xhr.send();
     },
-    save: function (url, data, onLoad, onError) {
+    save: function (data, onLoad, onError) {
+      var url = 'https://js.dump.academy/code-and-magick';
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 
