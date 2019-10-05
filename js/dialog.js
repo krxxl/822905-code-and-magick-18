@@ -27,6 +27,7 @@
 
   var closePopup = function () {
     setup.classList.add('hidden');
+    window.list.innerHTML = '';
     document.removeEventListener('keydown', onPopupEscPress);
     wizardCoat.removeEventListener('click', onCoatChangeColor);
     wizardEyes.removeEventListener('click', onEyesChangeColor);
@@ -35,6 +36,7 @@
 
   setupOpen.addEventListener('click', function () {
     openPopup();
+    window.backend.load(window.successHandler, window.errorHandler);
   });
 
   setupOpen.addEventListener('keydown', function (evt) {
@@ -81,10 +83,7 @@
 
   upload.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
-    // var defaultCoords = {
-    //   x: evt.clientX,
-    //   y: evt.clientY
-    // };
+
 
     var startCoords = {
       x: evt.clientX,
@@ -127,4 +126,13 @@
     document.addEventListener('mouseup', onMouseUp);
 
   });
+
+  // отправка формы
+  var form = document.querySelector('.setup-wizard-form');
+
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(form), closePopup, window.errorHandler);
+  });
+
 })();
