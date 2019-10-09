@@ -60,16 +60,20 @@
   var wizardFireball = document.querySelector('.setup-fireball-wrap');
 
 
+  window.coatColor = document.querySelector('#coat-color').value;
   var onCoatChangeColor = function () {
-    var coatColor = window.wizzardSettings.coatColors[window.getRandomNumber(0, window.wizzardSettings.coatColors.length - 1)];
-    wizardCoat.style.fill = coatColor;
-    document.querySelector('#coat-color').value = coatColor;
+    var newColor = window.wizzardSettings.coatColors[window.getRandomNumber(0, window.wizzardSettings.coatColors.length - 1)];
+    wizardCoat.style.fill = newColor;
+    document.querySelector('#coat-color').value = newColor;
+    window.onCoatChangeWizards(newColor);
   };
 
+  window.eyesColor = document.querySelector('#eyes-color').value;
   var onEyesChangeColor = function () {
-    var eyesColor = window.wizzardSettings.eyesColors[window.getRandomNumber(0, window.wizzardSettings.eyesColors.length - 1)];
-    wizardEyes.style.fill = eyesColor;
-    document.querySelector('#eyes-color').value = eyesColor;
+    var newColor = window.wizzardSettings.eyesColors[window.getRandomNumber(0, window.wizzardSettings.eyesColors.length - 1)];
+    wizardEyes.style.fill = newColor;
+    document.querySelector('#eyes-color').value = newColor;
+    window.onEyesChangeWizards(newColor);
   };
 
   var onfireballChangeColor = function () {
